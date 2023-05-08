@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.flex-full {
+  flex-basis: 100% !important;
+}
+.flex-half {
+  flex-basis: 50%;
+}
+body {
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+header {
+  font-family: "Handlee", cursive;
+  font-weight: bold;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  min-height: 10vh;
+  background-color: red;
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  padding-inline: 20px;
+}
+header > div.side {
+  /* flex-grow: 1; */
+  flex-basis: 100%;
+  display: flex;
+}
+header > div.side > div {
+  flex-grow: 1;
+}
+img.logo {
+  max-width: 120px;
+  margin-right: 50px;
+}
+
+/* ----------------------------------form---------------------------------- */
+form {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+form input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  outline: none;
+  max-width: 100%;
+  display: inline-block;
+  flex-grow: 1;
+}
+form > div.major {
+  display: flex;
+}
+
+form div.side {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+form div.side > div {
+  flex-basis: 50%;
+  display: flex;
+  gap: 5px;
+}
+form button {
+  padding: 10px;
+  border-radius: 10px;
+}

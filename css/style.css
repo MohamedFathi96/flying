@@ -20,6 +20,32 @@ ol[role="list"] {
   line-height: 1.1;
   font-weight: 500;
 }
+.suggestion-list {
+  border-radius: 10px;
+  z-index: 2;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.98);
+  min-width: 100%;
+  max-height: 190px;
+  overflow-y: scroll;
+  top: 102%;
+}
+.suggestion-list > li {
+  cursor: pointer;
+  display: flex;
+  gap: 15px;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgb(245, 188, 188);
+  font-size: 0.9rem;
+  margin-inline: 20px;
+}
+.suggestion-list > li:hover {
+  color: red;
+  box-shadow: 0 2px 5px rgb(117, 111, 103);
+}
+.suggestion-list > li img {
+  width: 30px;
+}
 .backdrop-blur::backdrop {
   background-color: rgba(17, 2, 2, 0.78);
   backdrop-filter: blur(2px);
@@ -62,6 +88,9 @@ body {
   padding-inline: 45px;
   justify-content: space-between;
   gap: 12px;
+}
+.flag {
+  max-width: 30px;
 }
 #header-modal {
   position: fixed;
@@ -236,22 +265,13 @@ form ul#nationality-list {
   min-width: 100%;
   max-height: 190px;
   overflow-y: scroll;
+  top: 102%;
 }
-form ul#nationality-list > li {
-  cursor: pointer;
+
+form .nationality-div {
   display: flex;
-  gap: 15px;
-  padding: 10px 15px;
-  border-bottom: 1px solid rgb(245, 188, 188);
-  font-size: 0.9rem;
-  margin-inline: 20px;
-}
-form ul#nationality-list > li:hover {
-  color: red;
-  box-shadow: 0 2px 5px rgb(117, 111, 103);
-}
-form ul#nationality-list > li img {
-  width: 30px;
+  gap: 5px;
+  align-items: center;
 }
 
 /*-------------------------------- Footer-------------------------------- */

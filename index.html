@@ -47,7 +47,10 @@
                 <div class="major">
                     <div class="flex-full field">
                         <label for="dist">Destination</label>
-                        <input type="text" id="dist" placeholder="Destination">
+                        <div style="position: relative;" class="destination-div">
+                            <input style="width: 100%;" type="text" id="dist" placeholder="Destination">
+                            <ul role="list" class="hidden suggestion-list" id="destination-list"></ul>
+                        </div>
                     </div>
                     <div class="field">
                         <label for="checkIn">check in</label>
@@ -74,7 +77,7 @@
                         <label for="nationality">nationality</label>
                         <div style="position: relative;" class="nationality-div">
                             <input style="width: 100%;" type="text" id="nationality">
-                            <ul role="list" class="hidden" id="nationality-list"></ul>
+                            <ul role="list" class="hidden suggestion-list" id="nationality-list"></ul>
                         </div>
                     </div>
                     <div class="field">

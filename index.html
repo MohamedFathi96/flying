@@ -18,105 +18,138 @@
                 <div>tours</div>
             </div>
             <div><img class="logo" src="./assets/logo.png" alt="logo"></div>
-            <div class="side">
-                <div>activites</div>
-                <div>meet & greet</div>
-                <div>packages</div>
-                <div>offline request</div>
+            <div class="side right">
+                <div>flights</div>
+                <div>hotels</div>
+                <div>transfers</div>
+                <div>tours</div>
             </div>
+            <img class="menu" src="./assets/menu2.png" alt="menu">
+
+            <dialog class="backdrop-blur" id="header-modal">
+                <img class="close menu-close" src="./assets/close.png" alt="close">
+                <div>
+                    <div>flights</div>
+                    <div>hotels</div>
+                    <div>transfers</div>
+                    <div>tours</div>
+                    <div>flights</div>
+                    <div>hotels</div>
+                    <div>transfers</div>
+                    <div>tours</div>
+                </div>
+            </dialog>
         </header>
 
-        <form action="">
-            <div class="major">
-                <div class="side">
-                    <div class="flex-full">
+        <div class="main">
+            <form class="booking" action="" autocomplete="off">
+                <h1 class="main-header">Book Cheap flights easily</h1>
+                <div class="major">
+                    <div class="flex-full field">
                         <label for="dist">Destination</label>
-                        <input type="text" id="dist">
+                        <input type="text" id="dist" placeholder="Destination">
                     </div>
-
-                    <div>
+                    <div class="field">
                         <label for="checkIn">check in</label>
                         <input type="date" id="checkin">
                     </div>
-                    <div>
+                    <div class="field">
                         <label for="checkout">check out</label>
-                        <input type="date" id="checkout" onchange="countDays()">
+                        <input type="date" id="checkout" onchange="updateNights()">
                     </div>
-                    <div>
-                        <label for="nationality">nationality</label>
-                        <input type="text" id="nationality">
+                    <div class="field">
+                        <label for="nights">nights</label>
+                        <input type="number" id="nights" onchange="updateCheckOUt()">
                     </div>
-                    <div>
+
+                    <div class="field">
                         <label for="star">star rating</label>
-                        <input type="text" id="star">
+                        <input type="number" id="star">
                     </div>
-                </div>
-                <div class="side">
-                    <div class="flex-full">
+                    <div class="flex-full field">
                         <label for="hotel">Hotel Name</label>
                         <input type="text" id="hotel">
                     </div>
-                    <div>
-                        <label for="nights">nights</label>
-                        <input type="number" id="nights">
+                    <div class="field">
+                        <label for="nationality">nationality</label>
+                        <div style="position: relative;" class="nationality-div">
+                            <input style="width: 100%;" type="text" id="nationality">
+                            <ul role="list" class="hidden" id="nationality-list"></ul>
+                        </div>
                     </div>
-                    <div>
+                    <div class="field">
                         <label for="travellers">travellers</label>
-                        <input type="number" id="travellers">
+                        <input type="text" id="travellers">
                     </div>
                 </div>
-            </div>
 
-            <button type="button">More Options</button>
-        </form>
+                <button class="button-general" id="options-open" type="button">More Options</button>
+            </form>
+            <dialog class="backdrop-blur" id="options-modal">
+                <div>
+                    <img class="close options-close" src="./assets/close.png" alt="close">
+                    <h3 class="second-header">More Search Options</h3>
+                    <form id="options-form" method="dialog">
+                        <div>
+                            <label for="nights">Country</label>
+                            <input type="text" id="nights" onchange="updateCheckOUt()">
+                        </div>
+                        <div>
+                            <label for="nights">City</label>
+                            <input type="text" id="nights" onchange="updateCheckOUt()">
+                        </div>
+                        <div>
+                            <label for="nights">Currency</label>
+                            <input type="text" id="nights" onchange="updateCheckOUt()">
+                        </div>
+                    </form>
+                    <button form="options-form" class="button-general" type="submit">Done</button>
+                </div>
+            </dialog>
 
-        <footer>
-            <h1>Partner With Us</h1>
-            <details>
-                <summary>Add your property</summary>
-                <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international
-                    pavilions,
-                    award-winning fireworks and seasonal special events.</p>
-            </details>
-            <details>
-                <summary>Add your property</summary>
-                <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international
-                    pavilions,
-                    award-winning fireworks and seasonal special events.</p>
-            </details>
-            <details>
-                <summary>Add your property</summary>
-                <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international
-                    pavilions,
-                    award-winning fireworks and seasonal special events.</p>
-            </details>
-            <details>
-                <summary>Add your property</summary>
-                <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international
-                    pavilions,
-                    award-winning fireworks and seasonal special events.</p>
-            </details>
-            <hr />
-            <h1>Special Deal On</h1>
-            <details>
-                <summary>Add your property</summary>
-                <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international
-                    pavilions,
-                    award-winning fireworks and seasonal special events.</p>
-            </details>
-            <details>
-                <summary>Add your property</summary>
-                <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international
-                    pavilions,
-                    award-winning fireworks and seasonal special events.</p>
-            </details>
-            <details>
-                <summary>Add your property</summary>
-                <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international
-                    pavilions,
-                    award-winning fireworks and seasonal special events.</p>
-            </details>
-        </footer>
+            <footer>
+                <div>
+                    <h1 class="second-header">Partner With Us</h1>
+                    <details>
+                        <summary>Add your property</summary>
+                        <p>award-winning fireworks and seasonal special events</p>
+                    </details>
+                    <details>
+                        <summary>Add your property</summary>
+                        <p>award-winning fireworks and seasonal special events</p>
+
+                    </details>
+                    <details>
+                        <summary>Add your property</summary>
+                        <p>award-winning fireworks and seasonal special events</p>
+
+                    </details>
+                    <details>
+                        <summary>Add your property</summary>
+                        <p>award-winning fireworks and seasonal special events</p>
+
+                    </details>
+                </div>
+                <div>
+                    <h1 class="second-header">Special Deal On</h1>
+                    <div>
+                        <h3>Book Via</h3>
+                        <p>www.nowworld.com</p>
+                    </div>
+                    <div>
+                        <h3>Offer Validity 3 months</h3>
+                        <p>Valid on select Destination</p>
+                    </div>
+                    <div>
+                        <h3>For more details</h3>
+                        <p>mohamedfathi@gmail.com</p>
+                    </div>
+                </div>
+
+            </footer>
+        </div>
+
+
 
         <script src="./js/script.js"></script>
     </body>

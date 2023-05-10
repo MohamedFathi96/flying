@@ -13,6 +13,64 @@ const nationalityDiv = document.querySelector(".nationality-div");
 const destinationList = document.getElementById("destination-list");
 const destinationInput = document.getElementById("dist");
 
+let citiesArray = [
+  "Abu Hammad",
+  "Al Mahallah al Kubra",
+  "Al Mansurah",
+  "Al Marj",
+  "Alexandria",
+  "Almazah",
+  "Ar Rawdah",
+  "Assiut",
+  "Az Zamalik",
+  "Badr",
+  "Banha",
+  "Bani Suwayf",
+  "Cairo",
+  "Damietta",
+  "Faraskur",
+  "Flaminj",
+  "Giza",
+  "Heliopolis",
+  "Helwan",
+  "Hurghada",
+  "Ismailia",
+  "Kafr ash Shaykh",
+  "Luxor",
+  "Madinat an Nasr",
+  "Madinat as Sadis min Uktubar",
+  "Minya",
+  "Nasr",
+  "New Cairo",
+  "Port Said",
+  "Rafah",
+  "Ramsis",
+  "Sadat",
+  "Shirbin",
+  "Shubra",
+  "Sohag",
+  "Suez",
+  "Tanta",
+  "Toukh",
+  "Zagazig",
+];
+const countriesFlagsArr = [
+  "Africa",
+  "America",
+  "Argentina",
+  "Australia",
+  "China",
+  "Egypt",
+  "India",
+  "Korea",
+  "London",
+  "Maghreb",
+];
+
+window.addEventListener("load", async () => {
+  checkIn.value = new Date().toISOString().split("T")[0];
+});
+
 document.addEventListener("click", (e) => {
   if (e.target.matches("#dist") || e.target.matches("#nationality")) return;
   nationalityList.classList.add("hidden");
@@ -29,12 +87,12 @@ destinationInput.addEventListener("focus", () => {
 });
 
 destinationInput.addEventListener("input", (elem) => {
-  emptyDestinatinList();
+  emptyList(destinationList);
   updateDestinationDebounce(elem.target.value);
 });
 
 nationalityInput.addEventListener("input", (elem) => {
-  emptyNationalityList();
+  emptyList(nationalityList);
   updateNationalityDebounce(elem.target.value);
 });
 
@@ -49,73 +107,61 @@ function debounce(cb, delay = 300) {
 }
 
 const updateDestinationDebounce = debounce(async (searchText) => {
-  const res = await fetch(
-    `https://restcountries.com/v3.1/name/${searchText}?fields=name,flags`
-  );
-  if (res.ok) {
-    const data = await res.json();
-    data.forEach((suggestionResponse) => {
-      createNewDestinationItemLIst(suggestionResponse);
+  if (searchText !== "") {
+    const suggestedCities = citiesArray.filter((city) =>
+      city.toLocaleLowerCase().startsWith(searchText)
+    );
+    suggestedCities.forEach((city) => {
+      createNewDestinationItemLIst(city);
     });
-  } else {
-    emptyNationalityList();
   }
 });
 
 const updateNationalityDebounce = debounce(async (searchText) => {
-  const res = await fetch(
-    `https://restcountries.com/v3.1/name/${searchText}?fields=name,flags`
-  );
-  if (res.ok) {
-    const data = await res.json();
-    data.forEach((suggestionResponse) => {
-      createNewNationalityitemList(suggestionResponse);
+  if (searchText !== "") {
+    const suggestedCountries = countriesFlagsArr.filter((country) =>
+      country.toLocaleLowerCase().startsWith(searchText)
+    );
+    suggestedCountries.forEach((country) => {
+      createNewNationalityitemList(country);
     });
-  } else {
-    emptyNationalityList();
   }
 });
 
-function createNewDestinationItemLIst(suggestionResponse) {
+function createNewDestinationItemLIst(city) {
   const newListItem = document.createElement("li");
-  newListItem.append(document.createTextNode(suggestionResponse.name.common));
+  newListItem.append(document.createTextNode(city));
   destinationList.append(newListItem);
   newListItem.addEventListener("click", userClickedDestination);
-  console.log(newListItem);
 }
 
 function userClickedDestination(e) {
-  console.log(e.target);
+  destinationInput.value = e.target.textContent;
 }
 
-function createNewNationalityitemList(suggestionResponse) {
+function createNewNationalityitemList(country) {
   const newListItem = document.createElement("li");
   const flagImg = document.createElement("img");
-  flagImg.src = suggestionResponse.flags.png;
+  flagImg.src = `../assets/flags/${country.toLocaleLowerCase()}.webp`;
   newListItem.append(flagImg);
-  newListItem.append(document.createTextNode(suggestionResponse.name.common));
+  newListItem.append(document.createTextNode(country));
   nationalityList.append(newListItem);
   newListItem.addEventListener("click", userClickedNationality);
 }
-
 function userClickedNationality(e) {
   let oldImage = document.querySelector(".flag");
   if (oldImage) oldImage.remove();
-  const imgFlag = e.target.childNodes[0];
-  imgFlag.classList.add("flag");
+  const flagImg = document.createElement("img");
+  flagImg.src = `../assets/flags/${e.target.textContent.toLocaleLowerCase()}.webp`;
+  flagImg.classList.add("flag");
   nationalityInput.value = e.target.childNodes[1].nodeValue;
-  nationalityDiv.prepend(imgFlag);
-  emptyNationalityList();
+  nationalityDiv.prepend(flagImg);
+  emptyList(nationalityList);
 }
 
-function emptyNationalityList() {
-  while (nationalityList.hasChildNodes()) {
-    nationalityList.firstChild.remove();
-  }
-}
-function emptyDestinatinList() {
-  while (destinationList.hasChildNodes()) {
-    destinationList.firstChild.remove();
+function emptyList(list) {
+  while (list.hasChildNodes()) {
+    list.firstChild.remove();
   }
 }
 
@@ -125,9 +171,6 @@ function updateNights() {
   );
   nights.value = timeDifferece / (24 * 3600 * 1000);
 }
-window.addEventListener("load", async () => {
-  checkIn.value = new Date().toISOString().split("T")[0];
-});
 
 function updateCheckOUt() {
   let addedTime =
